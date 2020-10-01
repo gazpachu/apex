@@ -44,11 +44,17 @@
 
         for (
           var i = 0;
-          i < imageBaseFormats.length + imageHighFormats.length;
+          i < imageBaseFormats.length + imageHighFormats.length - 4;
           i += 1
         ) {
-          var folder = i < 4 ? "/image_cube_high/" : "/image_item_high/";
-          var filename = i < 4 ? imageBaseFormats[i] : imageHighFormats[i];
+          var folder =
+            i < imageBaseFormats.length
+              ? "/image_cube_high/"
+              : "/image_item_high/";
+          var filename =
+            i < imageBaseFormats.length
+              ? imageBaseFormats[i]
+              : imageHighFormats[i];
           var img = document.createElement("img");
           img.classList.add("image");
           img.src =
@@ -56,6 +62,7 @@
             parsedDate +
             folder +
             id +
+            parsedDate +
             "_" +
             filename +
             ".jpg";
