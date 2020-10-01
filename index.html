@@ -1,11 +1,66 @@
 <html>
   <head>
     <title>Apex Auctions</title>
+    <style>
+      .image {
+        max-width: 100%;
+        margin-bottom: 10px;
+      }
+    </style>
   </head>
   <body>
     <script>
-      function generateImages() {
+      var imageBaseFormats = ["r", "l", "t", "u"];
+      var imageHighFormats = [
+        "010_01",
+        "010_02",
+        "010_03",
+        "010_04",
+        "020_01",
+        "020_02",
+        "020_03",
+        "020_04",
+        "030_01",
+        "030_02",
+        "030_03",
+        "030_04",
+        "040_01",
+        "040_02",
+        "040_03",
+        "040_04",
+        "050_01",
+        "050_02",
+        "050_03",
+        "050_04",
+        "060_01",
+        "060_02",
+        "060_03",
+        "060_04",
+      ];
+
+      function generateImages(date, id) {
         var images = document.getElementById("images");
+        var parsedDate = date.replace(/-/g, "");
+
+        for (
+          var i = 0;
+          i < imageBaseFormats.length + imageHighFormats.length;
+          i += 1
+        ) {
+          var folder = i < 4 ? "/image_cube_high/" : "/image_item_high/";
+          var filename = i < 4 ? imageBaseFormats[i] : imageHighFormats[i];
+          var img = document.createElement("img");
+          img.classList.add("image");
+          img.src =
+            "http://jadb2.jupiter.ac/auctiondata/bds/disp/bds/" +
+            parsedDate +
+            folder +
+            id +
+            "_" +
+            filename +
+            ".jpg";
+          images.appendChild(img);
+        }
       }
 
       function resetImages() {
@@ -18,7 +73,10 @@
         var id = document.getElementById("id");
 
         if (date.value && id.value) {
+          resetImages();
           generateImages(date.value, id.value);
+        } else {
+          alert("Please enter a date and ID");
         }
 
         return false;
