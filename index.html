@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>Apex Auctions</title>
+  </head>
+  <body>
+    <script>
+      function generateImages() {
+        var images = document.getElementById("images");
+      }
+
+      function resetImages() {
+        var images = document.getElementById("images");
+        images.innerHTML = "";
+      }
+
+      function submitForm() {
+        var date = document.getElementById("date");
+        var id = document.getElementById("id");
+
+        if (date.value && id.value) {
+          generateImages(date.value, id.value);
+        }
+
+        return false;
+      }
+    </script>
+    <img src="logo.jpeg" alt="Apex Moto" />
+    <form onsubmit="return submitForm();">
+      <p>
+        <label for="name">Auction Date</label>
+        <input
+          type="date"
+          name="date"
+          id="date"
+          placeholder="Example: 2020/11/21"
+        />
+      </p>
+      <p>
+        <label for="id">Auction ID</label>
+
+        <input
+          type="text"
+          name="id"
+          id="id"
+          placeholder="Example: 3423423523"
+        />
+      </p>
+      <input type="submit" value="submit" />
+      <input type="reset" value="reset" onClick="resetImages();" />
+    </form>
+    <div id="images" />
+  </body>
+</html>
